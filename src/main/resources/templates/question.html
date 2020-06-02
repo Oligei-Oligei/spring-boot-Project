@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${questionDTO.title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/myWebProject.css">
+    <!--    <link rel="stylesheet" href="css/MyIndexCss.css"> -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+<!-- 引用导航栏模板 -->
+<div th:insert="navigationTemple :: navigation"></div>
+
+<!--话题展示页面以及热门话题页面的部署-->
+<div class="container-fluid main profile">
+    <div class="row">
+        <!-- 话题展示页面 -->
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
+            <h2 class="picture"><span th:text="${questionDTO.title}"></span></h2>
+            <span class="text-desc">
+                发布人：<span th:text="${questionDTO.user.name}"></span>
+                 | 发布日期：<span th:text="${#dates.format(questionDTO.gmtCreate,'yyyy-MM-dd')}"></span>
+                 | 浏览数：<span th:text="${questionDTO.viewCount}"></span>
+            </span>
+            <hr>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDTO.description}">
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <a th:href="@{'/publish/' + ${questionDTO.id}}" class="text-desc" th:if="${session.user != null && session.user.accountId == questionDTO.creator}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑
+            </a>
+        </div>
+        <!--问题拥有者信息-->
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>用户信息</h4>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-circle head-picture" th:src="${'/picture/测试用图片.jpg'}" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <span th:text="${questionDTO.user.name}" class="question-title"></span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>相似问题</h4>
+            </div>
+            <!--<h3>临江仙-杨慎（明）</h3>
+            <p> 滚滚长江东逝水，浪花淘尽英雄。</p>
+            <p>是非成败转头空。</p>
+            <p>青山依旧在，几度夕阳红。</p>
+            <p>白发渔樵江渚上，惯看秋月春风。</p>
+            <p>一壶浊酒喜相逢。</p>
+            <p>古今多少事，都付笑谈中。</p>-->
+        </div>
+    </div>
+</div>
+
+<!--  -->
+</body>
+</html>

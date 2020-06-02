@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring boot 学习案例</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/myWebProject.css">
+<!--    <link rel="stylesheet" href="css/MyIndexCss.css"> -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+    <!-- 引用导航栏模板 -->
+    <div th:insert="navigationTemple :: navigation"></div>
+
+    <!--话题展示页面以及热门话题页面的部署-->
+    <div class="container-fluid main">
+        <div class="row">
+            <!-- 话题展示页面 -->
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" style="">
+                <h2 class="picture"><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
+                <hr>
+                <!-- 发布的问题部分 使用 th:each循环打印变量-->
+                <div class="media" th:each="question : ${pageNation.questions}">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-circle head-picture" th:src="${'/picture/测试用图片.jpg'}" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a th:href="@{'/question/' + ${question.id}}" th:text="${question.title}" class="question-title"></a>
+                        </h4>
+                        <span th:text="${question.description}"></span><br>
+                        <span class="text-desc">
+                            <span th:text="${question.commentCount}"></span> 个回复 .
+                            <span th:text="${question.viewCount}"></span> 次浏览 . 发布时间：
+                            <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
+                        </span>
+                    </div>
+                </div>
+                <!-- 问题页面导向游标 -->
+                <nav aria-label="Page navigation" class="navigation">
+                    <ul class="pagination">
+                        <!-- 游标控制 -->
+                        <li th:if="${pageNation.showFirstPage}">
+                            <a th:href="@{/(page=${1})}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li th:if="${pageNation.showPrevious}">
+                            <a th:href="@{/(page=${pageNation.page - 1})}" aria-label="Previous">
+                                <span aria-hidden="true">&lt;</span>
+                            </a>
+                        </li>
+                        <!-- 数据展示 -->
+                        <li th:class="${pageNation.page == page ? 'active' : ''}" th:each="page : ${pageNation.pages}">
+                            <a th:href="@{/(page=${page})}" th:text="${page}"></a>
+                        </li>
+                        <!-- 游标控制 -->
+                        <li th:if="${pageNation.showNext}">
+                            <a th:href="@{/(page=${pageNation.page + 1})}" aria-label="Next">
+                                <span aria-hidden="true">&gt;</span>
+                            </a>
+                        </li>
+                        <li th:if="${pageNation.showEndPage}">
+                            <a th:href="@{/(page=${pageNation.totalPage})}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+            <!--热门话题部分-->
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <h3>临江仙-杨慎（明）</h3>
+                <p> 滚滚长江东逝水，浪花淘尽英雄。</p>
+                <p>是非成败转头空。</p>
+                <p>青山依旧在，几度夕阳红。</p>
+                <p>白发渔樵江渚上，惯看秋月春风。</p>
+                <p>一壶浊酒喜相逢。</p>
+                <p>古今多少事，都付笑谈中。</p>
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+</body>
+</html>

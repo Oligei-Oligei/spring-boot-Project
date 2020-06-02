@@ -1,0 +1,48 @@
+/*自定义样式，作用域publish.html*/
+.main{
+    background-color: white;
+    margin:30px;
+}
+body{
+    background-color: #efefef;
+}
+.btn-publish{
+    float:right;
+    margin-bottom:15px;
+}
+.picture{
+    font-size: 22px;
+    margin-top: 10px;
+}
+hr{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.head-picture{
+    width:40px;
+    height:40px;
+}
+h4{
+    font-size: 16px;
+}
+.text-desc{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999999;
+}
+.navigation{
+    float:right;
+}
+
+.profile .section{
+    margin-top: 15px;
+}
+
+.community-menu{
+    color:#999;
+}
+
+.question-title{
+    color: #131212;
+    font-weight: bold;
+}
