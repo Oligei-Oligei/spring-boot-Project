@@ -26,19 +26,6 @@ public class ProfileController {
                           HttpServletRequest request,
                           @RequestParam(value = "size", defaultValue = "5") int size,
                           @RequestParam(value = "page", defaultValue = "1") int page){
-        /*cookies验证登录过程，后期使用拦截器实现*/
-        /*获取cookie使用request，这个步骤是获取cookie判断用户是否登录成功然后从数据库中获取用户的信息到传递到网页上*/
-     /*   Cookie[] cookies = request.getCookies();
-        User user = null;
-        *//*防止程序因为cookies为null而报错宕机*//*
-        if (cookies != null){
-            user = loginUtil.getUserByCookie(cookies, "token");
-            if (user != null){
-                request.getSession().setAttribute("user", user);
-            } else {
-                return "redirect:/";
-            }
-        }*/
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             return "redirect:/";

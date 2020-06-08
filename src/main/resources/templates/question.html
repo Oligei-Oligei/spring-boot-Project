@@ -30,7 +30,7 @@
             </div>
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <a th:href="@{'/publish/' + ${questionDTO.id}}" class="text-desc" th:if="${session.user != null && session.user.accountId == questionDTO.creator}">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"th:if="${session.user.accountId == questionDTO.user.accountId}"></span>编辑
             </a>
         </div>
         <!--问题拥有者信息-->

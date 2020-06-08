@@ -28,8 +28,6 @@ public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     private UserService userService;
 
     /*对变量进行注解，和 spring 中的属性注入是一致的*/

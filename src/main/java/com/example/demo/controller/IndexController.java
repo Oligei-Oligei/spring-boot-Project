@@ -38,6 +38,8 @@ public class IndexController {
                request.getSession().setAttribute("user", user);
            }
        }
+       /*设置发布按钮*/
+        request.getSession().setAttribute("page", "index");
         /*获取文章列表及分页信息*/
         PageDTO pageNation = questionService.questionSelect(page, size);
         model.addAttribute("pageNation", pageNation);

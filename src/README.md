@@ -1,3 +1,4 @@
+##视频地址：https://www.bilibili.com/video/BV1Zb41137X2  (原up主已经把视频删除了)
 ## 项目结构
 <br>controller包下的对象为控制器，用于处理页面发出的请求。即当请求一个页面时，相应的控制器会接收这个请求并处理完毕后跳转到对应的页面
 ```
@@ -51,6 +52,7 @@ QuestionService->getQuestionById方法：根据传入参数获取对应的问题
 ## 新接触的知识点
 ```
 OkHttp的 jar包，OKHttp用于请求数据
+themleaf：用于获取后端数据到前端显示的框架
 使用了BootStrap 框架作为前端框架：https://v3.bootcss.com/
 使用了 H2 数据库作为保存网页数据的数据库
 可以在 https://mvnrepository.com 中找到想要的jar包

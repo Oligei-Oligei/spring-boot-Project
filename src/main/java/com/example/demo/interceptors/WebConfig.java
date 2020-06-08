@@ -16,9 +16,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private LoginInterceptor loginInterceptor;
+    @Autowired
+    private PublishInterceptor publishInterceptor;
+    @Autowired
+    private  NotPublishInterceptor notPublishInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry){
+        /*登录拦截器*/
         registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
         .excludePathPatterns("/css/**","/js/**","/img/**");
+        /*问题发布拦截器，在发布页面不显示发布按钮*/
+        registry.addInterceptor(publishInterceptor).addPathPatterns("/publish/**")
+                .excludePathPatterns("/css/**","/js/**","/img/**");
+        /*问题发布拦截器，在非发布页面显示按钮*/
+        registry.addInterceptor(notPublishInterceptor).addPathPatterns("/**")
+                .excludePathPatterns("/css/**","/js/**","/img/**","/publish/**");
     }
 }

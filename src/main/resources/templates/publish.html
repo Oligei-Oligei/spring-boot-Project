@@ -3,17 +3,17 @@
 <head>
     <title>问题发布-案例</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/myWebProject.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/myWebProject.css">
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 <body>
     <!-- 导航栏，采用 https://v3.bootcss.com/getting-started/#download 中组件选项中的：导航条->默认导航条中的代码 -->
-    <nav class="navbar navbar-default">
+<!--    <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <!-- ？？？ -->
+            &lt;!&ndash; ？？？ &ndash;&gt;
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Spring boot 实例</span>
@@ -21,7 +21,7 @@
                 <a class="navbar-brand" href="/">Spring boot 实例</a>
             </div>
 
-            <!-- ？？？ -->
+            &lt;!&ndash; ？？？ &ndash;&gt;
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
@@ -30,7 +30,7 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- 显示已登录状态 -->
+                    &lt;!&ndash; 显示已登录状态 &ndash;&gt;
                     <li class="dropdown" th:if="${session.user != null}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -39,12 +39,14 @@
                             <li><a href="#">退出登录</a></li>
                         </ul>
                     </li>
-                    <!-- 显示未登录状态 -->
+                    &lt;!&ndash; 显示未登录状态 &ndash;&gt;
                     <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=Iv1.19f0a347d21dec78&redirect_uri=http://127.0.0.1:8080/callback&scope=user&state=1">登录</a></li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+            </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;
+        </div>&lt;!&ndash; /.container-fluid &ndash;&gt;
+    </nav>-->
+    <!-- 引用导航栏模板 -->
+    <div th:insert="navigationTemple :: navigation"></div>
     <!-- 以上为导航栏 -->
     <!-- 一下为问题发布详细页面 -->
     <div class="container-fluid main">
@@ -55,6 +57,7 @@
                 <hr>
                 <!-- 请求被拦截到PublishController中处理 -->
                 <form action="/publish" method="post">
+                    <input type="hidden" name = "id" th:value="${id}">
                     <div class="form-group">
                         <label for="title">问题标题（简单扼要）：</label>
                         <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="输入点什么吧...">
