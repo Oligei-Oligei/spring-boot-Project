@@ -45,10 +45,9 @@ public class QuestionService {
         if (page < 1) { page = 1; }
         if (page > totalPage) { page = totalPage; }
 
-
-//        计算分页功能中所需要的page
+        /*计算分页功能中所需要的page*/
         int offset = size * (page - 1);
-//        查询分页数据
+        /*查询分页数据*/
         List<Question> questionList = questionMapper.questionList(offset, size);
         return questionUtil.getPageDTO(questionList, totalPage, page);
     }

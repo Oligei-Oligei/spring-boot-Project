@@ -52,7 +52,9 @@ public class AuthorizeController {
         /*获取token的过程*/
 
         String token = githubProvider.getAccessToken(accessTokenDTO);
+        System.out.println(token);
         GithubUser githubUser = githubProvider.getUser(token);
+        System.out.println(githubUser);
         /*设置用户的登录状态，即如果 user 不为空，则设置 session，否则不设置*/
         if (githubUser != null){
             /*创建一个 User 对象保存到数据库中*/
@@ -61,12 +63,8 @@ public class AuthorizeController {
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setAvatar(githubUser.getAvatarUrl());
+            /*将数据插入数据库*/
             userService.createOrUpdateUser(user);
-           /* if (userMapper.findByAccountID(user.getAccountId()) == null) {
-                userMapper.insert(user);
-            } else {
-                userMapper.alterToken(user.getToken(), user.getAccountId());
-            }*/
             /*设置cookies*/
             response.addCookie(new Cookie("token", token));
             /*其中 redirect 用于指明使用重定向的方式跳转页面,必须使用路径的形式指出需要返回的页面，因为 index 在根路径中，所以

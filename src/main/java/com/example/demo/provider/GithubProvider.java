@@ -9,11 +9,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Objects;
 
-
 /**
- *
+ * @author 有梦想的咸鱼
  */
-// 注解 Component 仅仅将被修饰的类初始化到 Spring 容器的上下文，即将被修饰类初始化为 bean类
+/* 注解 Component 仅仅将被修饰的类初始化到 Spring 容器的上下文，即将被修饰类初始化为 bean类*/
 @Component
 public class GithubProvider {
     /*用于请求密钥 accessToken */
@@ -44,7 +43,7 @@ public class GithubProvider {
                 .build();
         try{
             Response response = client.newCall(request).execute();
-            String string = response.body().string();
+            String string = Objects.requireNonNull(response.body()).string();
             return JSON.parseObject(string, GithubUser.class);
         }catch (IOException e){
             e.printStackTrace();
